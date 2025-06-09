@@ -28,25 +28,44 @@ export async function unsubscribeUser() {
   return { success: true }
 }
 
-export async function sendNotification(message: string) {
-  if (!subscription) {
-    throw new Error('Nenhuma subscrição disponível')
-  }
-
+export async function sendNotification(subscription: WebPushSubscription, message: string) {
   try {
-    await webpush.sendNotification(
-      subscription,
-      JSON.stringify({
-        title: 'PWA Test Notification',
-        body: message,
-        icon: '/head.png',
-        badge: '/head.png',
-      })
-    )
-    console.log('Notificação enviada com sucesso')
-    return { success: true }
+    console.log('📤 Enviando notificação para:', subscription.endpoint.slice(0, 50) + '...')
+    
+    const payload = JSON.stringify({
+      title: 'PWA Notification',
+      body: message,
+      icon: '/head.png',
+      badge: '/head.png',
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: 1
+      },
+      actions: [
+        {
+          action: 'explore',
+          title: 'Ver mais',
+          icon: '/head.png',
+        },
+        {
+          action: 'close',
+          title: 'Fechar',
+          icon: '/head.png',
+        }
+      ]
+    })
+
+    await webpush.sendNotification(subscription, payload)
+    
+    console.log('✅ Notificação enviada com sucesso!')
+    return { success: true, message: 'Notificação enviada com sucesso!' }
+    
   } catch (error) {
-    console.error('Erro ao enviar notificação:', error)
-    return { success: false, error: 'Falha ao enviar notificação' }
+    console.error('❌ Erro ao enviar notificação:', error)
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'Erro desconhecido' 
+    }
   }
 }
