@@ -2,5 +2,13 @@
 
 
 h1{
-  font-size: 4rem;
+  font-size: 3rem;
+}
+
+button{
+  font-size: 1rem;
+  padding: 10px 20px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 0.5rem;
 }
