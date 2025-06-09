@@ -1,3 +1,4 @@
+import {PushSubscription } from './../node_modules/@types/web-push/index.d';
 'use server'
  
 import webpush from 'web-push'
@@ -7,7 +8,6 @@ webpush.setVapidDetails(
   process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
   process.env.VAPID_PRIVATE_KEY!
 )
- 
 let subscription: PushSubscription | null = null
  
 export async function subscribeUser(sub: PushSubscription) {
