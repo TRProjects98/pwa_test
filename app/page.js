@@ -67,7 +67,7 @@ function PushNotificationManager() {
   }
  
   return (
-    <div className='bg-gray-200 p-4 rounded-lg shadow-md flex flex-col gap-4 justify-center items-center w-1/3'>
+    <div className='bg-gray-200 p-4 rounded-lg shadow-md align-center flex flex-col gap-4'>
       <h1> 🔔 Push Notifications</h1>
       {subscription ? (
         <>
@@ -109,7 +109,7 @@ function InstallPrompt() {
   }
  
   return (
-    <div className='bg-gray-200 p-4 rounded-lg shadow-md flex flex-col gap-4 justify-center items-center w-1/3'>
+    <div className='bg-gray-200 p-4 rounded-lg shadow-md flex flex-col gap-4 items-center'>
       <h1>Install App</h1>
       <button>Add to Home Screen</button>
       {isIOS && (
