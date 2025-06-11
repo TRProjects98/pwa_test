@@ -9,7 +9,6 @@ export default function InstallPrompt() {
     setIsIOS(
       /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window).MSStream
     )
- 
     setIsStandalone(window.matchMedia('(display-mode: standalone)').matches)
   }, [])
  
