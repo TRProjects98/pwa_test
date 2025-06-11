@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "app/components/PushNotificationManager.js"  ],
   "exclude": [
     "node_modules"
   ]
